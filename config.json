@@ -1,8 +1,18 @@
 {
     "hostname": "0.0.0.0",
     "port": 3456,
+    "LEDTimeout": 250,
     "hardware": 
-    {
-        "LEDTimeout": 250
-    }
+    [
+        {
+            "name": "LED",
+            "pin": 16,
+            "mode": "output"
+        },
+        {
+            "name": "Thermostat",
+            "pin": 12,
+            "mode": "output"
+        }
+    ]
 }

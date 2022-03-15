@@ -7,8 +7,9 @@ const fs = require("fs").promises;
 const socketio = require("socket.io");
 const app = express();
 
-const Gpio = require("pigpio").Gpio;
-const LED = new Gpio(16, {mode: Gpio.OUTPUT});
+//pigpio is the library for controlling the GPIO pins on the raspberry pi
+const hardware = require('./hardware.js');
+var x = 0;
 
 //set up server and sockets
 const server = http.createServer(app);
@@ -16,7 +17,6 @@ const io = socketio(server);
 
 //for reading config file
 const config = require('../config.json');
-const { threadId } = require('worker_threads');
 
 init();
 
@@ -33,6 +33,13 @@ function init()
     {
         console.log(`Server running at http://${config.hostname}:${config.port}/`);
     });
+
+    setInterval(update, 20);
+}
+
+function update()
+{
+    hardware.update();
 }
 
 function requestListener(request, response)
@@ -74,7 +81,6 @@ function requestListener(request, response)
                 response.writeHead(500);
                 response.write("500 Internal Server Error");
                 response.end();
-                
             }
             console.log(err);
         });
@@ -91,9 +97,9 @@ function sockets(socket)
 
     socket.on("write", () => 
     {
-        console.log("SocketIO: Writing to LED");
-        LED.digitalWrite(1);
-        setTimeout(() => LED.digitalWrite(0), config.hardware.LEDTimeout)
-
+        hardware.pulse("LED", config.LEDTimeout);
+        x += 10;
+        hardware.setPWM("Thermostat", x);
     });
 }
+
