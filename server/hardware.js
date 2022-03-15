@@ -2,6 +2,21 @@
 const config = require('../config.json');
 const Gpio = require("pigpio").Gpio;
 
+class Device
+{//small, internal wrapper class for GPIO devices
+    constructor(name, pin, mode)
+    {
+        this.name = name;
+        this.pin = pin;
+        if(mode == "output")
+            this.mode = Gpio.OUTPUT;
+        if(mode == "input")
+            this.mode = Gpio.INPUT;
+        
+        this.dev = new Gpio(pin, {mode: mode});
+    }
+}
+
 class Hardware
 {//the hardware class allows for the easy creation and management of the actual hardware connected to the pi
 
@@ -52,20 +67,5 @@ class Hardware
 }
 
 const hw = new Hardware();
-
-class Device
-{//small, internal wrapper class for GPIO devices
-    constructor(name, pin, mode)
-    {
-        this.name = name;
-        this.pin = pin;
-        if(mode == "output")
-            this.mode = Gpio.OUTPUT;
-        if(mode == "input")
-            this.mode = Gpio.INPUT;
-        
-        this.dev = new Gpio(pin, {mode: mode});
-    }
-}
 
 module.exports = hw;
