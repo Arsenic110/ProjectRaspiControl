@@ -93,15 +93,7 @@ function sockets(socket)
     {
         console.log("SocketIO: Writing to LED");
         LED.digitalWrite(1);
-        sleep(config.hardware.LEDTimeout);
-        LED.digitalWrite(0);
-    });
-}
+        setTimeout(() => LED.digitalWrite(0), 1000)
 
-function sleep(ms) 
-{
-    return new Promise((resolve) => 
-    {
-      setTimeout(resolve, ms);
     });
 }
