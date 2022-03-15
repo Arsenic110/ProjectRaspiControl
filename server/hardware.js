@@ -39,10 +39,10 @@ class Hardware
                 //we found the device 
                 this.devices[i].dev.digitalWrite(1);
                 setTimeout(() => this.devices[i].dev.digitalWrite(0), duration);
+                return;
             }
-            else
-                console.log(`Queried Device: ${this.devices[i].name} not found.`);
         }
+        console.log(`Queried Device: ${this.devices[i].name} not found.`);
     }
 
     setPWM(name, value)
@@ -51,12 +51,11 @@ class Hardware
         {
             if(this.devices[i].name == name)
             {
-                //we found the device 
                 this.devices[i].dev.pwmWrite(value);
+                return;
             }
-            else
-                console.log(`Queried Device: ${this.devices[i].name} not found.`);
         }
+        console.log(`Queried Device: ${this.devices[i].name} not found.`);
     }
 
     update()
