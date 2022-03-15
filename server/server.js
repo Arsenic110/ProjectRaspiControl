@@ -68,10 +68,14 @@ function requestListener(request, response)
                 response.write("404 File Not Found");
                 response.end();
             }
-            else if (err.errno != -2)
+            else
+            {
                 response.writeHead(500);
                 response.write("500 Internal Server Error");
                 response.end();
+                
+            }
+            console.log(err);
         });
 }
 
