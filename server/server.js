@@ -16,6 +16,7 @@ const io = socketio(server);
 
 //for reading config file
 const config = require('../config.json');
+const { threadId } = require('worker_threads');
 
 init();
 
@@ -92,5 +93,15 @@ function sockets(socket)
     {
         console.log("SocketIO: Writing to LED");
         LED.digitalWrite(1);
+        sleep(250);
+        LED.digitalWrite(0);
+    });
+}
+
+function sleep(ms) 
+{
+    return new Promise((resolve) => 
+    {
+      setTimeout(resolve, ms);
     });
 }
