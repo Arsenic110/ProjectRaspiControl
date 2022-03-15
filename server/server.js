@@ -98,7 +98,8 @@ function sockets(socket)
     socket.on("write", () => 
     {
         hardware.pulse("LED", config.LEDTimeout);
-        x += 10;
+        if(x < 245)
+            x += 10;
         hardware.setPWM("Thermostat", x);
     });
 
