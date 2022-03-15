@@ -13,7 +13,7 @@ class Device
         if(mode == "input")
             this.mode = Gpio.INPUT;
         
-        this.dev = new Gpio(pin, {mode: mode});
+        this.dev = new Gpio(pin, {mode: mode, pullUpDown: Gpio.PUD_DOWN});
     }
 }
 
