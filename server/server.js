@@ -68,7 +68,7 @@ function requestListener(request, response)
                 response.write("404 File Not Found");
                 response.end();
             }
-            else
+            else if (err.errno != -2)
                 response.writeHead(500);
                 response.write("500 Internal Server Error");
                 response.end();
@@ -81,7 +81,12 @@ function sockets(socket)
 
     socket.on("init", (data) =>
     {
-        console.log("Writing to LED");
+        console.log("SocketIO: Init! " + data);
+    });
+
+    socket.on("write", () => 
+    {
+        console.log("SocketIO: Writing to LED");
         LED.digitalWrite(1);
     });
 }
