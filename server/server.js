@@ -101,5 +101,11 @@ function sockets(socket)
         x += 10;
         hardware.setPWM("Thermostat", x);
     });
+
+    socket.on("reset", () =>
+    {
+        hardware.setPWM("LED", 0);
+        hardware.setPWM("Thermostat", 0);
+    });
 }
 
