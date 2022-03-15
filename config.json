@@ -3,6 +3,6 @@
     "port": 3456,
     "hardware": 
     {
-        "LEDTimeout": 1000
+        "LEDTimeout": 250
     }
 }
