@@ -1,4 +1,3 @@
-const hw = new Hardware();
 
 const config = require('../config.json');
 const Gpio = require("pigpio").Gpio;
@@ -51,6 +50,8 @@ class Hardware
     }
 
 }
+
+const hw = new Hardware();
 
 class Device
 {//small, internal wrapper class for GPIO devices
