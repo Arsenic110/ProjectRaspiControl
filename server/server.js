@@ -7,6 +7,9 @@ const fs = require("fs").promises;
 const socketio = require("socket.io");
 const app = express();
 
+const Gpio = require("pigpio").Gpio;
+const LED = new Gpio(16, {mode: Gpio.OUTPUT});
+
 //set up server and sockets
 const server = http.createServer(app);
 const io = socketio(server);
@@ -78,6 +81,7 @@ function sockets(socket)
 
     socket.on("init", (data) =>
     {
-        console.log(data);
+        console.log("Writing to LED");
+        LED.digitalWrite(1);
     });
 }
