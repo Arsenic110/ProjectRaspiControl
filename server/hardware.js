@@ -28,6 +28,7 @@ class Hardware
         {
             this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode));
         }
+        this.thermostatPWM = {name: "", value: 0};
     }
 
     pulse(name, duration)
