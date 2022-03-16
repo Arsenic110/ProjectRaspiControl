@@ -107,8 +107,7 @@ function sockets(socket)
 
     socket.on("reset", () =>
     {
-        hardware.setPWM("LED", 0);
-        hardware.setPWM("Thermostat", 0);
+        hardware.reset();
     });
 }
 

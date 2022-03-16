@@ -59,6 +59,14 @@ class Hardware
         console.log(`Queried Device: ${name} not found.`);
     }
 
+    reset()
+    {
+        for(let i = 0; i < this.devices.length; i++)
+        {
+            this.devices[i].dev.digitalWrite(0);
+        }
+    }
+
     update()
     {
         //update PWM for Themostat
@@ -70,14 +78,17 @@ class Hardware
                 if(this.thermostatPWM.target <= this.thermostatPWM.current)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current + this.thermostatPWM.value);
+                    this.thermostatPWM.current = this.thermostatPWM.current + this.thermostatPWM.value;
                 }
                 else if (this.thermostatPWM.target > this.thermostatPWM.current && (this.thermostatPWM.current - this.thermostatPWM.value) >= 0)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current - this.thermostatPWM.value);
+                    this.thermostatPWM.current = this.thermostatPWM.current - this.thermostatPWM.value;
                 }
                 return;
             }
         }
+
     }
 
 }
