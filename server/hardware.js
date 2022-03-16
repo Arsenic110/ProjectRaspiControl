@@ -52,7 +52,7 @@ class Hardware
         {
             if(this.devices[i].name == name)
             {
-                this.thermostatPWM = {name: name, value: value, target:target};
+                this.thermostatPWM = {name: name, value: value, target:target, current:this.thermostatPWM.current};
                 console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 return;
             }
