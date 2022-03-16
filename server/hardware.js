@@ -73,14 +73,14 @@ class Hardware
         
         for(let i = 0; i < this.devices.length; i++)
         {
-            if(this.devices[i].name == this.thermostatPWM.name && (this.thermostatPWM.current + this.thermostatPWM.value) < 256)
+            if(this.devices[i].name == this.thermostatPWM.name && (this.thermostatPWM.current - this.thermostatPWM.value) >= 0)
             {
                 if(this.thermostatPWM.target <= this.thermostatPWM.current)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current - this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current - this.thermostatPWM.value;
                 }
-                if (this.thermostatPWM.target > this.thermostatPWM.current && (this.thermostatPWM.current - this.thermostatPWM.value) >= 0)
+                if (this.thermostatPWM.target > this.thermostatPWM.current && (this.thermostatPWM.current + this.thermostatPWM.value) < 256)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current + this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current + this.thermostatPWM.value;
