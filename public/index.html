@@ -13,8 +13,8 @@
     <button onclick="socket.emit('write')">Press Light</button>
     <button onclick="socket.emit('reset')">Reset all</button>
     <br>
-    <button onclick="socket.emit('thermostat', 200)">Set Thermostat to 200</button>
-    <button onclick="socket.emit('thermostat', 0)">Set Thermostat to 0</button>
+    <button onclick="socket.emit('thermostat', 200, 5)">Set Thermostat to 200</button>
+    <button onclick="socket.emit('thermostat', 0, 5)">Set Thermostat to 0</button>
 
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

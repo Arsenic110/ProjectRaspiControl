@@ -100,9 +100,9 @@ function sockets(socket)
         hardware.pulse("LED", config.LEDTimeout);
     });
 
-    socket.on("thermostat", (value) =>
+    socket.on("thermostat", (target, value) =>
     {
-        hardware.setPWM("Thermostat", value);
+        hardware.setPWM("Thermostat", value, target);
     })
 
     socket.on("reset", () =>

@@ -46,13 +46,14 @@ class Hardware
         console.log(`Queried Device: ${name} not found.`);
     }
 
-    setPWM(name, value)
+    setPWM(name, value, target)
     {
         for(let i = 0; i < this.devices.length; i++)
         {
             if(this.devices[i].name == name)
             {
-                this.thermostatPWM = {name: name, value: value}
+                this.thermostatPWM = {name: name, value: value, target:target}
+                return;
             }
         }
         console.log(`Queried Device: ${name} not found.`);
@@ -66,10 +67,14 @@ class Hardware
         {
             if(this.devices[i].name == this.thermostatPWM.name)
             {
-                if(this.thermostatPWM.target < this.thermostatPWM.value)
+                if(this.thermostatPWM.target <= this.thermostatPWM.value)
+                {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.target + this.thermostatPWM.value / 10);
+                }
                 else if (this.thermostatPWM.target > this.thermostatPWM.value)
+                {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.target - this.thermostatPWM.value / 10);
+                }
                 return;
             }
         }
