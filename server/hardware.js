@@ -53,6 +53,7 @@ class Hardware
             if(this.devices[i].name == name)
             {
                 this.thermostatPWM = {name: name, value: value, target:target, current: 0};
+                console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 return;
             }
         }
@@ -79,11 +80,15 @@ class Hardware
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current - this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current - this.thermostatPWM.value;
+
+                    console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 }
                 if (this.thermostatPWM.target > this.thermostatPWM.current && (this.thermostatPWM.current + this.thermostatPWM.value) < 256)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current + this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current + this.thermostatPWM.value;
+
+                    console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 }
                 return;
             }
