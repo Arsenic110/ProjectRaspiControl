@@ -51,7 +51,7 @@ class Hardware
         {
             if(this.devices[i].name == name)
             {
-                this.thermostatPWM = {name, value}
+                this.thermostatPWM = {name: name, value: value}
             }
         }
         console.log(`Queried Device: ${this.devices[i].name} not found.`);
