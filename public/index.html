@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello World</title>
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -13,11 +13,14 @@
     <button onclick="socket.emit('write')">Press Light</button>
     <button onclick="socket.emit('reset')">Reset all</button>
     <br>
-    <button onclick="socket.emit('thermostat', 200, 1)">Set Thermostat to 200</button>
-    <button onclick="socket.emit('thermostat', 0, 1)">Set Thermostat to 0</button>
+    <div>
+        <label for="slider">Thermostat Slider (0 to 200)</label>   
+        <input type="range" name="slider" id="slider" min="0" max="200" value="0">
+        <p id="thermo-value">Value: 0</p>
+    </div>
 
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     
     <script type="text/javascript" src="js/main.js"></script>
 </body>
