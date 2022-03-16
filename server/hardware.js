@@ -28,7 +28,7 @@ class Hardware
         {
             this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode));
         }
-        this.thermostatPWM = {name: "Thermostat", value: 0};
+        this.thermostatPWM = {name: "Thermostat", value: 0, target:0};
     }
 
     pulse(name, duration)
@@ -66,10 +66,10 @@ class Hardware
         {
             if(this.devices[i].name == this.thermostatPWM.name)
             {
-                if(this.devices[i].dev.getPwmDutyCycle() < this.thermostatPWM.value)
-                    this.devices[i].dev.pwmWrite(this.devices[i].dev.getPwmDutyCycle() + this.thermostatPWM.value / 10);
-                else if (this.devices[i].dev.getPwmDutyCycle() > this.thermostatPWM.value)
-                    this.devices[i].dev.pwmWrite(this.devices[i].dev.getPwmDutyCycle() - this.thermostatPWM.value / 10);
+                if(this.thermostatPWM.target < this.thermostatPWM.value)
+                    this.devices[i].dev.pwmWrite(this.thermostatPWM.target + this.thermostatPWM.value / 10);
+                else if (this.thermostatPWM.target > this.thermostatPWM.value)
+                    this.devices[i].dev.pwmWrite(this.thermostatPWM.target - this.thermostatPWM.value / 10);
                 return;
             }
         }
