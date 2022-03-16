@@ -51,8 +51,7 @@ class Hardware
         {
             if(this.devices[i].name == name)
             {
-                this.devices[i].dev.pwmWrite(value);
-                return;
+                this.thermostatPWM = {name, value}
             }
         }
         console.log(`Queried Device: ${this.devices[i].name} not found.`);
@@ -60,7 +59,19 @@ class Hardware
 
     update()
     {
-
+        //update PWM for Themostat
+        
+        for(let i = 0; i < this.devices.length; i++)
+        {
+            if(this.devices[i].name == this.thermostatPWM.name)
+            {
+                if(this.devices[i].dev.getPwmDutyCycle() < this.thermostatPWM.value)
+                    this.devices[i].dev.pwmWrite(this.devices[i].dev.getPwmDutyCycle() + this.thermostatPWM.value / 10);
+                else if (this.devices[i].dev.getPwmDutyCycle() > this.thermostatPWM.value)
+                    this.devices[i].dev.pwmWrite(this.devices[i].dev.getPwmDutyCycle() - this.thermostatPWM.value / 10);
+                return;
+            }
+        }
     }
 
 }

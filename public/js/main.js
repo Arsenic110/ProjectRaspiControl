@@ -4,7 +4,3 @@ var socket = io();
 
 socket.emit("init", "Hewoooo!!");
 
-function button()
-{
-    socket.emit("write");
-}
