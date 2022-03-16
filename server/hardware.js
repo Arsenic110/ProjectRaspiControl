@@ -28,7 +28,7 @@ class Hardware
         {
             this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode));
         }
-        this.thermostatPWM = {name: "", value: 0};
+        this.thermostatPWM = {name: "Thermostat", value: 0};
     }
 
     pulse(name, duration)
@@ -43,7 +43,7 @@ class Hardware
                 return;
             }
         }
-        console.log(`Queried Device: ${this.devices[i].name} not found.`);
+        console.log(`Queried Device: ${name} not found.`);
     }
 
     setPWM(name, value)
@@ -55,7 +55,7 @@ class Hardware
                 this.thermostatPWM = {name: name, value: value}
             }
         }
-        console.log(`Queried Device: ${this.devices[i].name} not found.`);
+        console.log(`Queried Device: ${name} not found.`);
     }
 
     update()
