@@ -5,7 +5,7 @@
     "hardware": 
     [
         {
-            "name": "LED",
+            "name": "Lights",
             "pin": 16,
             "mode": "output"
         },

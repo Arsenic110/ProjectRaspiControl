@@ -4,23 +4,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello World</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
     <h1>Hello World!</h1>
-    <a href="contents/unknown.jpg">Image content test</a>
 
-    <button onclick="socket.emit('write')">Press Light</button>
-    <button onclick="socket.emit('reset')">Reset all</button>
+    <div class="blockquote">
+        <h3>Light Control</h3>
+        <div>
+            <p>Main Lights: <button onclick="toggleLights()" id="lights-toggle">Turn On</button></p>
+        </div>
+    </div class="blockquote">
     <br>
-    <div>
-        <label for="slider">Thermostat Slider (0 to 200)</label>   
-        <input type="range" name="slider" id="slider" min="0" max="200" value="0">
-        <p id="thermo-value">Value: 0</p>
-    </div>
+    <div class="blockquote">
+        <h3>Thermostat Control</h3>
+        <div>
+            <p>Thermostat Slider: <input type="range" name="slider" id="slider" min="0" max="250" value="0"> <span id="thermo-value">Value: 0</span></p>
+        </div>
+    </div class="blockquote">
+
+    <br>
+    <div class="blockquote">
+        <h3>Reset</h3>
+        <div>
+            <p><button onclick="socket.emit('reset-lights')">Reset Lights</button></p>
+            <p><button onclick="socket.emit('reset-thermostat')">Reset Thermostat</button></p>
+        </div>
+    </div class="blockquote">
+
+    <br>
+    <div class="blockquote">
+        <h3>Placeholder Control</h3>
+        <div>
+            <p>Placeholder: </p>
+        </div>
+    </div class="blockquote">
+
+
+
 
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
-
-    
     <script type="text/javascript" src="js/main.js"></script>
 </body>

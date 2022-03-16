@@ -46,6 +46,20 @@ class Hardware
         console.log(`Queried Device: ${name} not found.`);
     }
 
+    setState(name, state)
+    {
+        for(let i = 0; i < this.devices.length; i++)
+        {
+            if(this.devices[i].name == name)
+            {
+                //we found the device 
+                this.devices[i].dev.digitalWrite(state);
+                return;
+            }
+        }
+        console.log(`Queried Device: ${name} not found.`);
+    }
+
     setPWM(name, value, target)
     {
         for(let i = 0; i < this.devices.length; i++)
@@ -53,19 +67,30 @@ class Hardware
             if(this.devices[i].name == name)
             {
                 this.thermostatPWM = {name: name, value: value, target:target, current:this.thermostatPWM.current};
-                //console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 return;
             }
         }
         console.log(`Queried Device: ${name} not found.`);
     }
 
-    reset()
+    reset(name)
     {
-        for(let i = 0; i < this.devices.length; i++)
-        {
-            this.devices[i].dev.digitalWrite(0);
-        }
+        if(name)
+            for(let i = 0; i < this.devices.length; i++)
+            {
+                if(this.devices[i].name == name)
+                {
+                    this.devices[i].dev.digitalWrite(0);
+                    return;
+                }
+
+            }
+        else
+            for(let i = 0; i < this.devices.length; i++)
+            {
+                this.devices[i].dev.digitalWrite(0);
+                return;
+            }
     }
 
     update()
@@ -80,15 +105,11 @@ class Hardware
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current - this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current - this.thermostatPWM.value;
-
-                    //console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 }
                 if (this.thermostatPWM.target > this.thermostatPWM.current && (this.thermostatPWM.current + this.thermostatPWM.value) < 256)
                 {
                     this.devices[i].dev.pwmWrite(this.thermostatPWM.current + this.thermostatPWM.value);
                     this.thermostatPWM.current = this.thermostatPWM.current + this.thermostatPWM.value;
-
-                    //console.log(`${this.thermostatPWM.name} is at ${this.thermostatPWM.current}, with target of ${this.thermostatPWM.target} with a step value of ${this.thermostatPWM.value}.`);
                 }
                 return;
             }

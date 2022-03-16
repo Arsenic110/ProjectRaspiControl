@@ -97,17 +97,24 @@ function sockets(socket)
 
     socket.on("write", () => 
     {
-        hardware.pulse("LED", config.LEDTimeout);
+        hardware.pulse("Lights", config.LEDTimeout);
     });
+
+    socket.on("setstate", (name, state) => hardware.setState(name, state));
 
     socket.on("thermostat", (target, value) =>
     {
         hardware.setPWM("Thermostat", value, target);
     })
 
-    socket.on("reset", () =>
+    socket.on("reset-lights", () =>
     {
-        hardware.reset();
+        hardware.reset("Lights");
+    });
+
+    socket.on("reset-thermostat", () =>
+    {
+        hardware.reset("Thermostat");
     });
 }
 
