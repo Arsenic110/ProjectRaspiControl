@@ -53,6 +53,7 @@ function generateHardware(hw)
 
         let btn = document.createElement('button');
         btn.innerHTML = "Open/Close Door";
+        btn.onclick(socket.emit('setstate', 'Lights', 1));
         el.appendChild(document.createElement('p').appendChild(btn));
 
 
