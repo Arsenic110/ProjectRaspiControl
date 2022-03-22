@@ -99,7 +99,7 @@ class Hardware
         {
             if(this.devices[i].name == name)
             {
-                this.devices[i].dev.digitalWrite(this.devices[i].dev.digitalRead());
+                this.devices[i].dev.digitalWrite(!this.devices[i].dev.digitalRead());
                 return;
             }
         }
