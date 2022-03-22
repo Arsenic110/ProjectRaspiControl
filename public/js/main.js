@@ -53,7 +53,7 @@ function generateHardware(hw)
 
         let btn = document.createElement('button');
         btn.innerHTML = "Open/Close Door";
-        el.appendChild(btn);
+        el.appendChild(document.createElement('p').appendChild(btn));
 
 
         document.getElementById('container-parent').appendChild(el);
