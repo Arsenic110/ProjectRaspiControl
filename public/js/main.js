@@ -53,7 +53,7 @@ function generateHardware(hw)
 
         let btn = document.createElement('button');
         btn.innerHTML = "Toggle On/Off";
-        btn.onclick = socket.emit('setstate', 'Lights', 1);
+        btn.onclick = function() { socket.emit('setstate', 'Lights', 1) };
         let p = document.createElement('p');
         p.appendChild(btn)
         el.appendChild(p);
