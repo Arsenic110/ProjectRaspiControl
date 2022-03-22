@@ -5,14 +5,20 @@ socket = io();
 
 var lights = 0;
 
-socket.emit("init", "Hewoooo!!");
 
-$('#slider').on("change", () =>
+function init()
 {
-    $('#thermo-value')[0].innerHTML = "Value: " +  $("#slider").val();
-    socket.emit('thermostat', $("#slider").val(), 5);
+    socket.emit("init", "Hewoooo!!");
 
-});
+    socket.on("hardware-list", generateHardware);
+
+    $('#slider').on("change", () =>
+    {
+        $('#thermo-value')[0].innerHTML = "Value: " +  $("#slider").val();
+        socket.emit('thermostat', $("#slider").val(), 5);
+    
+    });
+}
 
 function toggleLights()
 {
@@ -32,9 +38,26 @@ function toggleLights()
     socket.emit('setstate', 'Lights', lights);
 }
 
-//window.setInterval(update, 20);
-
-function update()
+function generateHardware(hw)
 {
-    
+    console.log("Generating Hardware List...");
+    for(let i = 0; i < hw.length; i++)
+    {
+        let el = document.createElement('div');
+        el.classList.push('blockquote');
+
+        let hdg = document.createElement('h3');
+        hdg.innerHTML = hw[i].name;
+        el.appendChild(hdg);
+
+        let btn = document.createElement('button');
+        btn.innerHTML = "Open/Close Door";
+        el.appendChild(btn);
+
+
+        $('#container-parent').appendChild(el);
+        $('#container-parent').appendChild(document.createElement('br'));
+    }
+    console.log("Hardware List Complete!");
+
 }

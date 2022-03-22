@@ -10,8 +10,43 @@
             "mode": "output"
         },
         {
-            "name": "Thermostat",
-            "pin": 12,
+            "name": "Thermostat Hot",
+            "pin": 20,
+            "mode": "output"
+        },
+        {
+            "name": "Thermostat Cold",
+            "pin": 21,
+            "mode": "output"
+        },
+        {
+            "name": "Front Door",
+            "pin": 14,
+            "mode": "output"
+        },
+        {
+            "name": "Kitchen Door",
+            "pin": 15,
+            "mode": "output"
+        },
+        {
+            "name": "Bathroom",
+            "pin": 17,
+            "mode": "output"
+        },
+        {
+            "name": "Living Room",
+            "pin": 18,
+            "mode": "output"
+        },
+        {
+            "name": "Window Front",
+            "pin": 22,
+            "mode": "output"
+        },
+        {
+            "name": "Window Kitchen",
+            "pin": 27,
             "mode": "output"
         }
     ]

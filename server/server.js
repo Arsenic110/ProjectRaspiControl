@@ -68,6 +68,8 @@ function requestListener(request, response)
         //end 
         response.end();
 
+        
+
     }).catch(err => 
         {//neat and cozy error catcher.
             if (err.errno == -2)
@@ -93,6 +95,7 @@ function sockets(socket)
     socket.on("init", (data) =>
     {
         console.log("SocketIO: Init! " + data);
+        socket.emit("hardware-list", config.hardware);
     });
 
     socket.on("write", () => 
