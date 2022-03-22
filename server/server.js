@@ -119,5 +119,10 @@ function sockets(socket)
     {
         hardware.reset("Thermostat");
     });
+
+    socket.on("toggle", (name) =>
+    {
+        hardware.toggle(name);
+    });
 }
 

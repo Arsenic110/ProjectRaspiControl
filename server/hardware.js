@@ -93,6 +93,19 @@ class Hardware
             }
     }
 
+    toggle(name)
+    {
+        for(let i = 0; i < this.devices.length; i++)
+        {
+            if(this.devices[i].name == name)
+            {
+                this.devices[i].dev.digitalWrite(this.devices[i].dev.digitalRead());
+                return;
+            }
+        }
+        console.log(`Queried Device: ${name} not found.`);
+    }
+
     update()
     {
         //update PWM for Themostat
