@@ -52,9 +52,11 @@ function generateHardware(hw)
         el.appendChild(hdg);
 
         let btn = document.createElement('button');
-        btn.innerHTML = "Open/Close Door";
+        btn.innerHTML = "Toggle On/Off";
         btn.onclick = socket.emit('setstate', 'Lights', 1);
-        el.appendChild(document.createElement('p').appendChild(btn));
+        let p = document.createElement('p');
+        p.appendChild(btn)
+        el.appendChild(p);
 
 
         document.getElementById('container-parent').appendChild(el);
