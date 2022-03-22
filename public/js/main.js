@@ -5,12 +5,13 @@ socket = io();
 
 var lights = 0;
 
+init();
 
 function init()
 {
-    socket.emit("init", "Hewoooo!!");
+    socket.emit('init', "Hewoooo!!");
 
-    socket.on("hardware-list", generateHardware);
+    socket.on('hardware-list', generateHardware);
 
     $('#slider').on("change", () =>
     {
