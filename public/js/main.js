@@ -45,7 +45,7 @@ function generateHardware(hw)
     for(let i = 0; i < hw.length; i++)
     {
         let el = document.createElement('div');
-        el.classList.push('blockquote');
+        el.classList.add('blockquote');
 
         let hdg = document.createElement('h3');
         hdg.innerHTML = hw[i].name;
