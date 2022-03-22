@@ -56,8 +56,8 @@ function generateHardware(hw)
         el.appendChild(btn);
 
 
-        $('#container-parent').appendChild(el);
-        $('#container-parent').appendChild(document.createElement('br'));
+        document.getElementById('container-parent').appendChild(el);
+        document.getElementById('container-parent').appendChild(document.createElement('br'));
     }
     console.log("Hardware List Complete!");
 
