@@ -7,47 +7,32 @@
         {
             "name": "Lights",
             "pin": 16,
-            "mode": "output"
+            "default": "low"
         },
         {
             "name": "Thermostat Hot",
             "pin": 20,
-            "mode": "output"
+            "default": "low"
         },
         {
             "name": "Thermostat Cold",
             "pin": 21,
-            "mode": "output"
+            "default": "low"
         },
         {
             "name": "Front Door",
             "pin": 14,
-            "mode": "output"
-        },
-        {
-            "name": "Kitchen Door",
-            "pin": 15,
-            "mode": "output"
-        },
-        {
-            "name": "Bathroom",
-            "pin": 17,
-            "mode": "output"
+            "default": "low"
         },
         {
             "name": "Living Room",
             "pin": 18,
-            "mode": "output"
+            "default": "low"
         },
         {
             "name": "Window Front",
             "pin": 22,
-            "mode": "output"
-        },
-        {
-            "name": "Window Kitchen",
-            "pin": 27,
-            "mode": "output"
+            "default": "high"
         }
     ]
 }

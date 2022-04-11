@@ -4,14 +4,13 @@ const Gpio = require("pigpio").Gpio;
 
 class Device
 {//small, internal wrapper class for GPIO devices
-    constructor(name, pin, mode)
+    constructor(name, pin, mode, def)
     {
         this.name = name;
         this.pin = pin;
-        if(mode == "output")
-            this.mode = Gpio.OUTPUT;
-        if(mode == "input")
-            this.mode = Gpio.INPUT;
+        this.mode = Gpio.OUTPUT;
+
+        this.default = 
         
         this.dev = new Gpio(pin, {mode: mode, pullUpDown: Gpio.PUD_DOWN});
     }
@@ -26,9 +25,19 @@ class Hardware
         //load in config and begin creating the devices
         for(let i = 0; i < config.hardware.length; i++)
         {
-            this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode));
+            this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode, config.hardware[i].default));
         }
+        
         this.thermostatPWM = {name: "Thermostat", value: 0, target:0, current:0};
+
+        for(let i = 0; i < this.devices.length; i++)
+        {
+            console.log(`Setting Default ${this.devices[i].def} for ${this.devices[i].name}, on pin ${this.devices[i].pin}`);
+            let o = 0;
+            if(this.devices[i].def == 'high')
+                o = 1;
+            this.setState(this.devices[i].name, o);
+        }
     }
 
     pulse(name, duration)
