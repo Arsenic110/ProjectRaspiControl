@@ -10,7 +10,7 @@ class Device
         this.pin = pin;
         this.mode = Gpio.OUTPUT;
 
-        this.default = 
+        this.def = def;
         
         this.dev = new Gpio(pin, {mode: mode, pullUpDown: Gpio.PUD_DOWN});
     }
@@ -27,7 +27,7 @@ class Hardware
         {
             this.devices.push(new Device(config.hardware[i].name, config.hardware[i].pin, config.hardware[i].mode, config.hardware[i].default));
         }
-        
+
         this.thermostatPWM = {name: "Thermostat", value: 0, target:0, current:0};
 
         for(let i = 0; i < this.devices.length; i++)
