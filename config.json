@@ -31,7 +31,7 @@
         },
         {
             "name": "Window Front",
-            "pin": 22,
+            "pin": 23,
             "default": "high"
         }
     ]
